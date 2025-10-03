@@ -1,14 +1,15 @@
 interface props {
-    numero: number
+    numero: string | number
     tipo: string
+    show?: boolean
 }
 
 import styles from "./cards.module.css"
 
-export default function Cards({ numero, tipo }: props) {
+export default function Cards({ numero, tipo, show }: props) {
     return (
-        <div className={styles.carta} >
-            {(tipo != "escondida" && tipo != "ERROR") &&
+        <div className={tipo != "soma" ? styles.carta : styles.soma} >
+            {(tipo != "escondida" && tipo != "ERROR" && tipo != "soma" || show) &&
                 <p className={styles.texto} >{numero}</p>
             }
 
@@ -18,8 +19,13 @@ export default function Cards({ numero, tipo }: props) {
             }
 
             {
-                tipo == "escondida"  &&
+                tipo == "escondida" && !show  &&
                 <p className={styles.texto} >??</p>
+            }
+
+            {
+                tipo == "soma" &&
+                <p className={styles.texto}>{numero}</p>
             }
         </div>
     )

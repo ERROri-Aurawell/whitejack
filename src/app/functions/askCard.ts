@@ -3,7 +3,13 @@ interface props {
     tipo: string
 }
 
-async function askMoreCards(who: number): Promise<props> {
+async function askMoreCards(who: number, possibleCards?: number[]): Promise<props> {
+    if (possibleCards && possibleCards.length > 0) {
+        const cardNumber = possibleCards[0];
+        possibleCards.shift();
+        return { numero: cardNumber, tipo: "comum" };
+    }
+
     try {
         const response = await fetch(`http://localhost:3001/askCard?who=${who}`, {
             method: "GET",

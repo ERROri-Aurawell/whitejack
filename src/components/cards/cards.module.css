@@ -22,3 +22,17 @@
     font-size: xx-large;
     font-family: minecraft;
 }
+
+.soma{
+    width: 10%;
+    min-width: 40px;
+    max-width: 110px;
+    height: 70% ;
+    max-height: 180px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 8px 8px 10px black;
+    background-color: rgb(35, 35, 35);
+}
