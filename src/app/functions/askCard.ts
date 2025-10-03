@@ -3,10 +3,19 @@ interface props {
     tipo: string
 }
 
-function askMoreCards(who: number): props {
-    return {
-        numero: 0,
-        tipo: "comum"
+async function askMoreCards(who: number): Promise<props> {
+    try {
+        const response = await fetch(`http://localhost:3001/askCard?who=${who}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json();
+        return data;
+    } catch {
+        console.log("Erro ao pedir carta")
+        return { numero: 0, tipo: "ERROR" };
     }
 }
 
